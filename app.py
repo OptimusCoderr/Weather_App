@@ -1,5 +1,5 @@
-from dotenv import load_dotenv
-load_dotenv()
+# from dotenv import load_dotenv
+# load_dotenv()
 
 import streamlit as st
 import requests
@@ -7,15 +7,17 @@ import os
 import google.generativeai as genai
 
 headers ={
-    "authorization": st.secrets["auth_token"],
+    "authorization": st.secrets["auth_gemini"],
+    "authorization": st.secrets["auth_weather"],
     "content-type": "application/json"
 }
 
 
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=os.getenv(st.secrets["auth_gemini"]))
 # Function to fetch weather data
 def get_weather_forecast(location):
-    api_key = os.getenv("WEATHER_API_KEY")
+    # api_key = os.getenv("WEATHER_API_KEY")
+    api_key = st.secrets["auth_weather"]
     url = f"https://api.openweathermap.org/data/2.5/weather?q={location}&appid={api_key}"
     response = requests.get(url)
     data = response.json()

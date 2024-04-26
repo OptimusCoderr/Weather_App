@@ -13,7 +13,7 @@ headers ={
 }
 
 
-genai.configure(api_key=os.getenv(st.secrets["auth_gemini"]))
+genai.configure(api_key=st.secrets["auth_gemini"])
 # Function to fetch weather data
 def get_weather_forecast(location):
     # api_key = os.getenv("WEATHER_API_KEY")
